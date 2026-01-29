@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris Salgados | Salgados Artesanais Premium</title>
+    <meta name="description" content="Salgados brasileiros autênticos - coxinha, pastel, esfiha e muito mais. Qualidade premium feita com amor.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegação -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <!-- Ícone Coxinha -->
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 60" width="32" height="38">
+                    <defs>
+                        <linearGradient id="navGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D4AF37"/>
+                            <stop offset="50%" style="stop-color:#F4E4BA"/>
+                            <stop offset="100%" style="stop-color:#C5A028"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M25,2 C27,2 29,5 31,10 C35,20 42,35 46,48 C48,54 46,58 38,60 C30,62 25,62 25,62 C25,62 20,62 12,60 C4,58 2,54 4,48 C8,35 15,20 19,10 C21,5 23,2 25,2 Z" fill="url(#navGold)"/>
+                </svg>
+                <span class="logo-text">Chris <span class="logo-accent">Salgados</span></span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#menu">Cardápio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#catering">Encomendas</a></li>
+                <li><a href="#contact" class="btn btn-primary btn-sm">Peça Já</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Seção Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Salgados Brasileiros Autênticos</h1>
+                <p>Experimente o verdadeiro sabor do Brasil com nossas coxinhas, pastéis e salgados tradicionais. Feitos fresquinhos todos os dias com ingredientes premium.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Peça Agora</a>
+                    <a href="#menu" class="btn btn-secondary">Ver Cardápio</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Logo Grande Coxinha -->
+                <svg class="hero-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="350" height="350">
+                    <defs>
+                        <linearGradient id="heroGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#D4AF37"/>
+                            <stop offset="50%" style="stop-color:#F4E4BA"/>
+                            <stop offset="100%" style="stop-color:#C5A028"/>
+                        </linearGradient>
+                        <filter id="heroShadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+                        </filter>
+                    </defs>
+                    <g transform="translate(200, 180)" filter="url(#heroShadow)">
+                        <path d="M0,-120 C6,-120 12,-112 18,-96 C30,-67 52,-24 75,32 C93,77 102,112 102,136 C102,168 83,192 53,205 C27,214 0,218 0,218 C0,218 -27,214 -53,205 C-83,192 -102,168 -102,136 C-102,112 -93,77 -75,32 C-52,-24 -30,-67 -18,-96 C-12,-112 -6,-120 0,-120 Z" fill="url(#heroGold)"/>
+                        <path d="M-45,144 Q0,160 45,144" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Cardápio -->
+    <section class="services" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Nossas Especialidades</span>
+                <h2>Cardápio</h2>
+                <p>Salgados brasileiros tradicionais feitos com receitas autênticas</p>
+            </div>
+            <div class="services-grid">
+                <!-- Coxinha -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1630409351241-e90e7f5e434d?w=400&h=300&fit=crop" alt="Coxinha" loading="lazy">
+                    </div>
+                    <h3>Coxinha</h3>
+                    <p>Nosso carro-chefe. Frango desfiado temperado envolto em massa cremosa, empanado e frito até dourar.</p>
+                </div>
+                <!-- Pastel -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&h=300&fit=crop" alt="Pastel" loading="lazy">
+                    </div>
+                    <h3>Pastel</h3>
+                    <p>Massa fininha e crocante recheada com carne, queijo ou palmito. Um clássico da comida de rua brasileira.</p>
+                </div>
+                <!-- Bolinha de Queijo -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400&h=300&fit=crop" alt="Bolinha de Queijo" loading="lazy">
+                    </div>
+                    <h3>Bolinha de Queijo</h3>
+                    <p>Bolinhas cremosas de catupiry, levemente empanadas e fritas até ficarem irresistivelmente derretidas por dentro.</p>
+                </div>
+                <!-- Kibe -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&h=300&fit=crop" alt="Kibe" loading="lazy">
+                    </div>
+                    <h3>Kibe</h3>
+                    <p>Fusão árabe-brasileira. Carne temperada com trigo para quibe, moldado e frito até ficar crocante.</p>
+                </div>
+                <!-- Pão de Queijo -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1598142982901-df6cec890e46?w=400&h=300&fit=crop" alt="Pão de Queijo" loading="lazy">
+                    </div>
+                    <h3>Pão de Queijo</h3>
+                    <p>O famoso pãozinho mineiro. Macio, elástico e irresistivelmente queijudo - sem glúten e viciante.</p>
+                </div>
+                <!-- Esfiha -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop" alt="Esfiha" loading="lazy">
+                    </div>
+                    <h3>Esfiha</h3>
+                    <p>Massa aberta árabe-brasileira coberta com carne temperada ou queijo cremoso. Assada até dourar.</p>
+                </div>
+                <!-- Empada -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=300&fit=crop" alt="Empada" loading="lazy">
+                    </div>
+                    <h3>Empada</h3>
+                    <p>Mini tortas de massa amanteigada recheadas com frango, camarão ou palmito. Clássico de festa brasileira.</p>
+                </div>
+                <!-- Risole -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop" alt="Risole" loading="lazy">
+                    </div>
+                    <h3>Risole</h3>
+                    <p>Pastéis cremosos em formato de meia-lua com recheio de presunto e queijo ou camarão. Empanados e fritos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-header">
+                <span class="section-label">Nossa História</span>
+                <h2>O Sabor de Casa</h2>
+                <p>A Chris Salgados traz os sabores autênticos do Brasil para a sua mesa. Cada salgado é feito à mão usando receitas tradicionais de família passadas de geração em geração, com ingredientes frescos e premium.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-line"></div>
+
+                <!-- 1992 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">1992</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=200&fit=crop" alt="1992 - Fundação">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>O Começo</h4>
+                            <p>Chris começou a fazer salgados em casa para vender na vizinhança. A receita da coxinha da avó foi o primeiro sucesso.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1997 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">1997</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=300&h=200&fit=crop" alt="1997 - Crescimento">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>Primeiro Funcionário</h4>
+                            <p>Com a demanda crescente, contratamos nossa primeira ajudante. A produção dobrou e começamos a atender festas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2002 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">2002</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=200&fit=crop" alt="2002 - Primeira Loja">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>Primeira Loja</h4>
+                            <p>Inauguramos nosso primeiro ponto comercial. Os clientes finalmente tinham um lugar para buscar os salgados fresquinhos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2007 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">2007</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=300&h=200&fit=crop" alt="2007 - Expansão">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>Expansão do Cardápio</h4>
+                            <p>Adicionamos esfihas, empadas e risoles ao cardápio. Nossa equipe cresceu para 10 pessoas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2012 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=300&h=200&fit=crop" alt="2012 - 20 Anos">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>20 Anos de Tradição</h4>
+                            <p>Comemoramos duas décadas fazendo os melhores salgados da região. Reforma completa da cozinha profissional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2017 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">2017</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=200&fit=crop" alt="2017 - Nova Geração">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>Nova Geração</h4>
+                            <p>Os filhos entraram no negócio trazendo inovação: delivery por aplicativo e presença nas redes sociais.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2022 -->
+                <div class="timeline-item">
+                    <div class="timeline-point"></div>
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=300&h=200&fit=crop" alt="2022 - 30 Anos">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>30 Anos de Sabor</h4>
+                            <p>Três décadas de história! Renovamos a marca mantendo a essência que nos trouxe até aqui.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2026 -->
+                <div class="timeline-item">
+                    <div class="timeline-point active"></div>
+                    <div class="timeline-year">Hoje</div>
+                    <div class="timeline-popup">
+                        <div class="timeline-popup-image">
+                            <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=300&h=200&fit=crop" alt="Hoje">
+                        </div>
+                        <div class="timeline-popup-content">
+                            <h4>Chris Salgados Hoje</h4>
+                            <p>Mais de 1000 salgados por semana, entrega em toda região, e o mesmo sabor de casa de 1992.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">32+</span>
+                    <span class="stat-label">Anos de Tradição</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Salgados por Semana</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Artesanal</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5★</span>
+                    <span class="stat-label">Avaliação dos Clientes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Encomendas -->
+    <section class="team" id="catering">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Eventos & Festas</span>
+                <h2>Encomendas</h2>
+                <p>Torne seu evento inesquecível com sabores autênticos brasileiros</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">🎉</div>
+                    </div>
+                    <h3>Festas</h3>
+                    <p class="team-role">Aniversário, Chá de Bebê, Formatura</p>
+                    <p class="team-bio">Bandejas personalizadas de salgados para suas celebrações especiais.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">🏢</div>
+                    </div>
+                    <h3>Corporativo</h3>
+                    <p class="team-role">Reuniões, Almoços, Eventos</p>
+                    <p class="team-bio">Impressione sua equipe e clientes com salgados brasileiros premium.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">💒</div>
+                    </div>
+                    <h3>Casamentos</h3>
+                    <p class="team-role">Coquetel, Recepção</p>
+                    <p class="team-bio">Salgados elegantes para o seu dia perfeito.</p>
+                </div>
+            </div>
+
+            <!-- Clientes Passados -->
+            <div class="past-clients">
+                <h3 class="clients-title">Empresas que Confiam em Nós</h3>
+                <div class="clients-grid">
+                    <div class="client-card">
+                        <div class="client-logo">
+                            <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=100&fit=crop" alt="TechCorp Brasil">
+                        </div>
+                        <span class="client-name">TechCorp Brasil</span>
+                        <span class="client-event">Coffee breaks semanais</span>
+                    </div>
+                    <div class="client-card">
+                        <div class="client-logo">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=200&h=100&fit=crop" alt="Banco Nacional">
+                        </div>
+                        <span class="client-name">Banco Nacional</span>
+                        <span class="client-event">Eventos corporativos</span>
+                    </div>
+                    <div class="client-card">
+                        <div class="client-logo">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&h=100&fit=crop" alt="Construtora Silva">
+                        </div>
+                        <span class="client-name">Construtora Silva</span>
+                        <span class="client-event">Inaugurações</span>
+                    </div>
+                    <div class="client-card">
+                        <div class="client-logo">
+                            <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=200&h=100&fit=crop" alt="Academia Fit">
+                        </div>
+                        <span class="client-name">Academia Fit</span>
+                        <span class="client-event">Eventos de abertura</span>
+                    </div>
+                    <div class="client-card">
+                        <div class="client-logo">
+                            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=200&h=100&fit=crop" alt="Hotel Luxo">
+                        </div>
+                        <span class="client-name">Hotel Luxo</span>
+                        <span class="client-event">Buffet de eventos</span>
+                    </div>
+                    <div class="client-card">
+                        <div class="client-logo">
+                            <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=200&h=100&fit=crop" alt="Escritório Advocacia">
+                        </div>
+                        <span class="client-name">Advocacia Santos</span>
+                        <span class="client-event">Reuniões de diretoria</span>
+                    </div>
+                </div>
+                <p class="clients-testimonial">
+                    <span class="quote-icon">"</span>
+                    Os salgados da Chris Salgados são sempre um sucesso em nossos eventos. Qualidade impecável e atendimento excepcional!
+                    <span class="testimonial-author">— Maria Santos, Gerente de Eventos, Hotel Luxo</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <span class="section-label">Fale Conosco</span>
+                    <h2>Faça Seu Pedido</h2>
+                    <p>Pronto para experimentar os melhores salgados brasileiros? Faça seu pedido ou solicite um orçamento para encomendas.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>+55 (11) 99999-9999</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>pedidos@chrissalgados.com.br</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Retirada e entrega disponíveis</span>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="name" required placeholder="Seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Tipo de Pedido</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Pedido pessoal, Encomenda, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Seu Pedido / Mensagem</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="Conte-nos o que você gostaria de pedir..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Enviar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 60" width="28" height="34">
+                            <defs>
+                                <linearGradient id="footerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#D4AF37"/>
+                                    <stop offset="50%" style="stop-color:#F4E4BA"/>
+                                    <stop offset="100%" style="stop-color:#C5A028"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M25,2 C27,2 29,5 31,10 C35,20 42,35 46,48 C48,54 46,58 38,60 C30,62 25,62 25,62 C25,62 20,62 12,60 C4,58 2,54 4,48 C8,35 15,20 19,10 C21,5 23,2 25,2 Z" fill="url(#footerGold)"/>
+                        </svg>
+                        <span class="logo-text">Chris Salgados</span>
+                    </a>
+                    <p>Trazendo o sabor autêntico do Brasil para sua mesa. Salgados artesanais feitos com amor.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Cardápio</h4>
+                        <ul>
+                            <li><a href="#menu">Coxinha</a></li>
+                            <li><a href="#menu">Pastel</a></li>
+                            <li><a href="#menu">Pão de Queijo</a></li>
+                            <li><a href="#menu">Esfiha</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Serviços</h4>
+                        <ul>
+                            <li><a href="#catering">Encomendas</a></li>
+                            <li><a href="#contact">Pedidos</a></li>
+                            <li><a href="#contact">Entrega</a></li>
+                            <li><a href="#contact">Retirada</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Redes Sociais</h4>
+                        <ul>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">WhatsApp</a></li>
+                            <li><a href="#">iFood</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Chris Salgados. Todos os direitos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

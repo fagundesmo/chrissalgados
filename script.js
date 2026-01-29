@@ -94,9 +94,21 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', highlightNavLink);
 
     // ========================================
-    // Contact Form Handling
+    // Contact Form Handling - WhatsApp Integration
     // ========================================
     const contactForm = document.getElementById('contactForm');
+    const WHATSAPP_NUMBER = '5567999380327'; // Chris Salgados WhatsApp
+
+    // Product names mapping
+    const productNames = {
+        bolinha: 'Bolinha de Queijo',
+        paoqueijo: 'Pão de Queijo',
+        enroladinho: 'Enroladinho de Salsicha',
+        hamburger: 'Mini Hamburgers',
+        bruschetta: 'Mini Bruschetta',
+        pastel: 'Pastel',
+        rissole: 'Rissole'
+    };
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -104,39 +116,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get form data
             const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                subject: formData.get('subject'),
-                message: formData.get('message')
-            };
+            const name = formData.get('name');
+            const message = formData.get('message');
 
-            // Basic validation
-            if (!data.name || !data.email || !data.subject || !data.message) {
-                showFormMessage('Please fill in all fields.', 'error');
+            // Basic validation - only name is required
+            if (!name || name.trim() === '') {
+                showFormMessage('Por favor, informe seu nome.', 'error');
                 return;
             }
 
-            if (!isValidEmail(data.email)) {
-                showFormMessage('Please enter a valid email address.', 'error');
+            // Build order list and calculate total
+            let orderItems = [];
+            let totalQty = 0;
+
+            Object.keys(productNames).forEach(function(key) {
+                const qty = parseInt(formData.get(key)) || 0;
+                if (qty > 0) {
+                    totalQty += qty;
+                    orderItems.push('• ' + productNames[key] + ': *' + qty + ' unidades*');
+                }
+            });
+
+            // Minimum order is 50 units total
+            if (totalQty < 50) {
+                showFormMessage('Pedido mínimo: 50 unidades. Você selecionou ' + totalQty + ' unidades.', 'error');
                 return;
             }
 
-            // Simulate form submission
-            // In production, replace this with actual form submission logic
-            // (e.g., using Formspree, Netlify Forms, or your own backend)
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
+            // Build WhatsApp message
+            const whatsappMessage = `🍴 *Novo Pedido - Chris Salgados*
 
-            // Simulate API call
+👤 *Cliente:* ${name}
+
+📋 *Pedido:*
+${orderItems.join('\n')}
+
+${message ? '📝 *Observações:*\n' + message : ''}
+
+_Aguardo confirmação do pedido!_`;
+
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+
+            // Open WhatsApp
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+
+            // Show success message
+            showFormMessage('Redirecionando para o WhatsApp...', 'success');
+
+            // Reset form after short delay
             setTimeout(function() {
-                showFormMessage('Thank you for your message! We\'ll get back to you soon.', 'success');
                 contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
+                document.querySelectorAll('.qty-select').forEach(function(select) {
+                    select.value = '0';
+                });
+            }, 1000);
         });
     }
 

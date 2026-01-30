@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Address input and buttons
-    const mapsBtn = document.getElementById('mapsBtn');
     const locationBtn = document.getElementById('locationBtn');
     const addressInput = document.getElementById('address');
     const suggestionsContainer = document.getElementById('addressSuggestions');
@@ -203,19 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
         addressInput.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 suggestionsContainer.classList.remove('active');
-            }
-        });
-    }
-
-    // Google Maps button - opens address in Maps
-    if (mapsBtn && addressInput) {
-        mapsBtn.addEventListener('click', function() {
-            const address = addressInput.value.trim();
-            if (address) {
-                const mapsURL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address);
-                window.open(mapsURL, '_blank');
-            } else {
-                window.open('https://www.google.com/maps', '_blank');
             }
         });
     }

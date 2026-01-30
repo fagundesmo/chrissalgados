@@ -117,6 +117,23 @@ document.addEventListener('DOMContentLoaded', function() {
         dateInput.setAttribute('min', today);
     }
 
+    // Google Maps button handler
+    const mapsBtn = document.getElementById('mapsBtn');
+    const addressInput = document.getElementById('address');
+
+    if (mapsBtn && addressInput) {
+        mapsBtn.addEventListener('click', function() {
+            const address = addressInput.value.trim();
+            if (address) {
+                const mapsURL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address);
+                window.open(mapsURL, '_blank');
+            } else {
+                // If no address, open Google Maps to get current location
+                window.open('https://www.google.com/maps', '_blank');
+            }
+        });
+    }
+
     // Clear error messages when user interacts with form
     if (contactForm) {
         contactForm.addEventListener('input', function() {
@@ -140,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(this);
             const name = formData.get('name');
             const deliveryDate = formData.get('deliveryDate');
+            const address = formData.get('address');
             const message = formData.get('message');
 
             // Basic validation
@@ -150,6 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!deliveryDate) {
                 showFormMessage('Por favor, selecione a data de entrega.', 'error');
+                return;
+            }
+
+            if (!address || address.trim() === '') {
+                showFormMessage('Por favor, informe o endereço de entrega.', 'error');
                 return;
             }
 
@@ -181,6 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
 👤 *Cliente:* ${name}
 
 📅 *Data de Entrega:* ${formattedDate}
+
+📍 *Endereço:* ${address}
 
 📋 *Pedido:* (${totalQty} unidades)
 ${orderItems.join('\n')}

@@ -1442,3 +1442,57 @@ section {
     filter: invert(0.8);
     cursor: pointer;
 }
+
+/* Address Input with Maps Button */
+.address-input-wrapper {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.address-input {
+    flex: 1;
+    height: 44px;
+    padding: 0 var(--spacing-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    border-radius: 8px;
+}
+
+.address-input:hover {
+    border-color: var(--color-primary);
+}
+
+.address-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.btn-maps {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-maps:hover {
+    background-color: #3367D6;
+    transform: scale(1.05);
+}
+
+.input-hint {
+    display: block;
+    margin-top: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+}

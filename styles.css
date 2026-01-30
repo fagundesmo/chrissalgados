@@ -1496,3 +1496,35 @@ section {
     font-size: var(--font-size-sm);
     color: var(--color-text-light);
 }
+
+/* Location Button */
+.btn-location {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #34A853;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-location:hover {
+    background-color: #2E8B47;
+    transform: scale(1.05);
+}
+
+.btn-location.loading {
+    background-color: #666;
+    cursor: wait;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}

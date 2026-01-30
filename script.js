@@ -117,10 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
         dateInput.setAttribute('min', today);
     }
 
-    // Google Maps button handler
+    // Address input and buttons
     const mapsBtn = document.getElementById('mapsBtn');
+    const locationBtn = document.getElementById('locationBtn');
     const addressInput = document.getElementById('address');
 
+    // Google Maps button - opens address in Maps
     if (mapsBtn && addressInput) {
         mapsBtn.addEventListener('click', function() {
             const address = addressInput.value.trim();
@@ -128,9 +130,80 @@ document.addEventListener('DOMContentLoaded', function() {
                 const mapsURL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(address);
                 window.open(mapsURL, '_blank');
             } else {
-                // If no address, open Google Maps to get current location
                 window.open('https://www.google.com/maps', '_blank');
             }
+        });
+    }
+
+    // Location button - gets current location and fills address
+    if (locationBtn && addressInput) {
+        locationBtn.addEventListener('click', function() {
+            if (!navigator.geolocation) {
+                alert('Seu navegador não suporta geolocalização.');
+                return;
+            }
+
+            // Show loading state
+            locationBtn.classList.add('loading');
+            locationBtn.disabled = true;
+            addressInput.placeholder = 'Buscando sua localização...';
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    // Use Nominatim (OpenStreetMap) for reverse geocoding - it's free!
+                    fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon + '&addressdetails=1')
+                        .then(function(response) {
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            if (data && data.display_name) {
+                                addressInput.value = data.display_name;
+                            } else {
+                                addressInput.value = lat + ', ' + lon;
+                            }
+                            // Reset button
+                            locationBtn.classList.remove('loading');
+                            locationBtn.disabled = false;
+                            addressInput.placeholder = 'Rua, número, bairro, cidade...';
+                        })
+                        .catch(function(error) {
+                            console.error('Erro ao buscar endereço:', error);
+                            // Fallback to coordinates
+                            addressInput.value = lat + ', ' + lon;
+                            locationBtn.classList.remove('loading');
+                            locationBtn.disabled = false;
+                            addressInput.placeholder = 'Rua, número, bairro, cidade...';
+                        });
+                },
+                function(error) {
+                    // Reset button
+                    locationBtn.classList.remove('loading');
+                    locationBtn.disabled = false;
+                    addressInput.placeholder = 'Rua, número, bairro, cidade...';
+
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert('Permissão de localização negada. Por favor, permita o acesso à localização.');
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            alert('Localização indisponível. Tente novamente.');
+                            break;
+                        case error.TIMEOUT:
+                            alert('Tempo esgotado ao buscar localização. Tente novamente.');
+                            break;
+                        default:
+                            alert('Erro ao obter localização. Tente novamente.');
+                    }
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
         });
     }
 

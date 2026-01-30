@@ -116,50 +116,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get form data
             const formData = new FormData(this);
-            const name = (formData.get('name') || '').toString().trim();
-            const notes = (formData.get('message') || '').toString().trim();
+            const name = formData.get('name');
+            const message = formData.get('message');
 
-            // Name is required so the WhatsApp message has context
-            if (!name) {
+            // Basic validation - only name is required
+            if (!name || name.trim() === '') {
                 showFormMessage('Por favor, informe seu nome.', 'error');
                 return;
             }
 
-            // Build order list and calculate total quantity
+            // Build order list and calculate total
             let orderItems = [];
             let totalQty = 0;
 
             Object.keys(productNames).forEach(function(key) {
-                const qty = parseInt(formData.get(key), 10) || 0;
+                const qty = parseInt(formData.get(key)) || 0;
                 if (qty > 0) {
                     totalQty += qty;
                     orderItems.push('• ' + productNames[key] + ': *' + qty + ' unidades*');
                 }
             });
 
-            // Conversation-first message:
-            // - If user selected items: include summary
-            // - If user selected nothing: open chat asking for help/menu/prices
-            const header = 'Olá! Tudo bem? Meu nome é ' + name + '. Vim pelo site.';
-            const orderBlock = orderItems.length
-                ? '\n\n📋 *Meu pedido (rascunho):*\n' + orderItems.join('\n')
-                : '\n\nQuero fazer um pedido, pode me ajudar com o cardápio e valores?';
+            // Minimum order is 50 units total
+            if (totalQty < 50) {
+                showFormMessage('Pedido mínimo: 50 unidades. Você selecionou ' + totalQty + ' unidades.', 'error');
+                return;
+            }
 
-            // If below the stated minimum, don't block the conversation—just flag it.
-            const minimumHint = (orderItems.length && totalQty < 50)
-                ? '\n\n⚠️ *Obs:* selecionei ' + totalQty + ' unidades — vi que o pedido mínimo pode ser 50. Pode confirmar?'
-                : '';
+            // Build WhatsApp message
+            const whatsappMessage = `🍴 *Novo Pedido - Chris Salgados*
 
-            const notesBlock = notes ? ('\n\n📝 *Observações:*\n' + notes) : '';
-            const closing = '\n\nQuando puder, me diga disponibilidade, prazo e total. Obrigado!';
+👤 *Cliente:* ${name}
 
-            const whatsappMessage = header + orderBlock + minimumHint + notesBlock + closing;
+📋 *Pedido:*
+${orderItems.join('\n')}
 
-            // Open WhatsApp chat with prefilled message (user still taps Send)
-            const whatsappURL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(whatsappMessage);
+${message ? '📝 *Observações:*\n' + message : ''}
+
+_Aguardo confirmação do pedido!_`;
+
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+
+            // Open WhatsApp
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
             window.open(whatsappURL, '_blank');
 
-            showFormMessage('Abrindo conversa no WhatsApp...', 'success');
+            // Show success message
+            showFormMessage('Redirecionando para o WhatsApp...', 'success');
+
+            // Reset form after short delay
+            setTimeout(function() {
+                contactForm.reset();
+                document.querySelectorAll('.qty-select').forEach(function(select) {
+                    select.value = '0';
+                });
+            }, 1000);
         });
     }
 

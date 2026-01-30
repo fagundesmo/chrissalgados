@@ -121,6 +121,91 @@ document.addEventListener('DOMContentLoaded', function() {
     const mapsBtn = document.getElementById('mapsBtn');
     const locationBtn = document.getElementById('locationBtn');
     const addressInput = document.getElementById('address');
+    const suggestionsContainer = document.getElementById('addressSuggestions');
+
+    // Address autocomplete
+    let autocompleteTimeout;
+
+    if (addressInput && suggestionsContainer) {
+        addressInput.addEventListener('input', function() {
+            const query = this.value.trim();
+
+            // Clear previous timeout
+            clearTimeout(autocompleteTimeout);
+
+            // Hide suggestions if query is too short
+            if (query.length < 3) {
+                suggestionsContainer.classList.remove('active');
+                suggestionsContainer.innerHTML = '';
+                return;
+            }
+
+            // Show loading
+            suggestionsContainer.innerHTML = '<div class="address-suggestions-loading">Buscando endereços...</div>';
+            suggestionsContainer.classList.add('active');
+
+            // Debounce the API call (wait 300ms after user stops typing)
+            autocompleteTimeout = setTimeout(function() {
+                // Use Photon API (free, based on OpenStreetMap) - prioritize Brazil
+                fetch('https://photon.komoot.io/api/?q=' + encodeURIComponent(query) + '&limit=5&lang=pt&lat=-20.4697&lon=-54.6201')
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        suggestionsContainer.innerHTML = '';
+
+                        if (data.features && data.features.length > 0) {
+                            data.features.forEach(function(feature) {
+                                const props = feature.properties;
+                                let addressParts = [];
+
+                                if (props.name) addressParts.push(props.name);
+                                if (props.housenumber) addressParts.push(props.housenumber);
+                                if (props.street) addressParts.push(props.street);
+                                if (props.district) addressParts.push(props.district);
+                                if (props.city) addressParts.push(props.city);
+                                if (props.state) addressParts.push(props.state);
+                                if (props.country) addressParts.push(props.country);
+
+                                const fullAddress = addressParts.join(', ');
+
+                                const item = document.createElement('div');
+                                item.className = 'address-suggestion-item';
+                                item.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span class="address-suggestion-text">' + fullAddress + '</span>';
+
+                                item.addEventListener('click', function() {
+                                    addressInput.value = fullAddress;
+                                    suggestionsContainer.classList.remove('active');
+                                    suggestionsContainer.innerHTML = '';
+                                });
+
+                                suggestionsContainer.appendChild(item);
+                            });
+                        } else {
+                            suggestionsContainer.innerHTML = '<div class="address-suggestions-loading">Nenhum endereço encontrado</div>';
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('Erro ao buscar endereços:', error);
+                        suggestionsContainer.innerHTML = '<div class="address-suggestions-loading">Erro ao buscar endereços</div>';
+                    });
+            }, 300);
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!addressInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                suggestionsContainer.classList.remove('active');
+            }
+        });
+
+        // Hide suggestions when pressing Escape
+        addressInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                suggestionsContainer.classList.remove('active');
+            }
+        });
+    }
 
     // Google Maps button - opens address in Maps
     if (mapsBtn && addressInput) {

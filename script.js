@@ -110,18 +110,46 @@ document.addEventListener('DOMContentLoaded', function() {
         rissole: 'Rissole'
     };
 
+    // Set minimum date to today
+    const dateInput = document.getElementById('deliveryDate');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+
+    // Clear error messages when user interacts with form
     if (contactForm) {
+        contactForm.addEventListener('input', function() {
+            const existingMessage = document.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+        });
+
+        contactForm.addEventListener('change', function() {
+            const existingMessage = document.querySelector('.form-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+        });
+
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             // Get form data
             const formData = new FormData(this);
             const name = formData.get('name');
+            const deliveryDate = formData.get('deliveryDate');
             const message = formData.get('message');
 
-            // Basic validation - only name is required
+            // Basic validation
             if (!name || name.trim() === '') {
                 showFormMessage('Por favor, informe seu nome.', 'error');
+                return;
+            }
+
+            if (!deliveryDate) {
+                showFormMessage('Por favor, selecione a data de entrega.', 'error');
                 return;
             }
 
@@ -143,12 +171,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Format date for display (DD/MM/YYYY)
+            const dateParts = deliveryDate.split('-');
+            const formattedDate = dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0];
+
             // Build WhatsApp message
             const whatsappMessage = `🍴 *Novo Pedido - Chris Salgados*
 
 👤 *Cliente:* ${name}
 
-📋 *Pedido:*
+📅 *Data de Entrega:* ${formattedDate}
+
+📋 *Pedido:* (${totalQty} unidades)
 ${orderItems.join('\n')}
 
 ${message ? '📝 *Observações:*\n' + message : ''}
